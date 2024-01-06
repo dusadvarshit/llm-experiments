@@ -1,8 +1,8 @@
 import streamlit as st
 import langchain_helper as lch
 
+## Handling some error due to conda-macos conflict
 import os
-
 os.environ['KMP_DUPLICATE_LIB_OK']='True'
 
 from pages.submodules.create_index import *
@@ -10,9 +10,7 @@ from pages.submodules.create_index import *
 import pinecone
 from sentence_transformers import SentenceTransformer
 
-## Handling some error due to conda-macos conflict
-import os
-os.environ['KMP_DUPLICATE_LIB_OK']='True'
+
 ##
 
 env_vars = dotenv_values(".env")
@@ -22,9 +20,7 @@ pinecone_api = env_vars.get("PINECONE_API_KEY")
 pinecone_env = env_vars.get("PINECONE_ENV")
 
 ## 
-os.write(1,b'Something was executed.\n')
 model = SentenceTransformer('pinecone/mpnet-retriever-squad2')
-os.write(1,b'Something was finished.\n')
 
 # Initialize connection to pinecone
 # pinecone.init(
@@ -49,3 +45,10 @@ Ask me a question!
 
 query = st.text_input('Search!', '')
 
+if query != "":
+    xq = model.encode([query]).tolist()
+    # get relevant context
+    xc = index.query(xq, top_k=5, include_metadata=True)
+
+    for context in xc['results'][0]['matches']:
+        st.write(context['metadata']['text'])
