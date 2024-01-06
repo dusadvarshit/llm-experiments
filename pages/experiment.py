@@ -19,7 +19,7 @@ pinecone_api = env_vars.get("PINECONE_API_KEY")
 pinecone_env = env_vars.get("PINECONE_ENV")
 
 ## 
-@st.cache
+@st.cache_resource
 def init_retriever():
     return SentenceTransformer('pinecone/mpnet-retriever-squad2')
 
