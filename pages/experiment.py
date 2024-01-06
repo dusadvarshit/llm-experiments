@@ -50,5 +50,7 @@ if query != "":
     # get relevant context
     xc = index.query(xq, top_k=5, include_metadata=True)
 
-    for context in xc['results'][0]['matches']:
-        st.write(context['metadata']['text'])
+    st.write(xc)
+
+    # for context in xc['results'][0]['matches']:
+    #     st.write(context['metadata']['text'])
