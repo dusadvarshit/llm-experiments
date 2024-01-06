@@ -42,7 +42,7 @@ def init_pinecone():
     return index
 
 def card(id_val, title, context):
-    st.markdown(f""""
+    st.markdown(f"""
     <div class="card" style="margin:1rem;">
   <div class="card-body">
     <h5 class="card-title">{title}</h5>
