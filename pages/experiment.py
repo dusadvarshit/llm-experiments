@@ -1,5 +1,4 @@
 import streamlit as st
-import langchain_helper as lch
 
 ## Handling some error due to conda-macos conflict
 import os
@@ -50,5 +49,4 @@ if query != "":
     # get relevant context
     xc = index.query(xq, top_k=5, include_metadata=True)
 
-    for context in xc['matches'][0]:
-        st.write(context['metadata']['text'])
+    st.write(xc['matches'][0]['metadata']['text'])
