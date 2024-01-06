@@ -24,7 +24,6 @@ def init_retriever():
     return SentenceTransformer('pinecone/mpnet-retriever-squad2')
 
 # Initialize connection to pinecone
-@st.cache
 def init_pinecone():
     pinecone.init(
         api_key=pinecone_api,
