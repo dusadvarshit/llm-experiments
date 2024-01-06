@@ -42,7 +42,7 @@ def init_pinecone():
     return index
 
 def card(id_val, title, context):
-    st.markdown(f"""
+    return f"""
     <div class="card" style="margin:1rem;">
   <div class="card-body">
     <h5 class="card-title">{title}</h5>
@@ -50,7 +50,7 @@ def card(id_val, title, context):
     <p class="card-text">{context}</p>
   </div>
 </div>
-    """, unsafe_allow_html=True)
+    """
 
 st.markdown("""
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
