@@ -41,7 +41,22 @@ def init_pinecone():
     index = pinecone.Index('qa-index')
     return index
 
+def card(id_val, title, context):
+    return """"
+    <div class="card" style="margin:1rem;">
+  <div class="card-body">
+    <h5 class="card-title">{title}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">{id_val}</h6>
+    <p class="card-text">{context}</p>
+  </div>
+</div>
+    """
 
+st.markdown("""
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+"""
+
+)
 st.write("""
 # AI Q&A
 Ask me a question!
@@ -58,4 +73,10 @@ if query != "":
     xc = index.query(xq, top_k=5, include_metadata=True)
 
     for context in xc['matches']:
-        st.write(context['metadata']['text'])
+        # st.write(context['metadata']['text'])
+        st.markdown(card(
+            context['id']
+            context['metadata']['title'],
+            context['metadata']['text']
+
+        ), unsafe_allow_html=True)
