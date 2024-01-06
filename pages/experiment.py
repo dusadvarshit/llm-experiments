@@ -75,7 +75,7 @@ if query != "":
     for context in xc['matches']:
         # st.write(context['metadata']['text'])
         st.markdown(card(
-            context['id']
+            context['id'],
             context['metadata']['title'],
             context['metadata']['text']
 
