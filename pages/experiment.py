@@ -23,20 +23,20 @@ pinecone_env = env_vars.get("PINECONE_ENV")
 model = SentenceTransformer('pinecone/mpnet-retriever-squad2')
 
 # Initialize connection to pinecone
-# pinecone.init(
-#     api_key=pinecone_api,
-#     environment=pinecone_env
-# )
+pinecone.init(
+    api_key=pinecone_api,
+    environment=pinecone_env
+)
 
 # # check if index already exists and if not we create it
-# if 'qa-index' not in pinecone.list_indexes():
-#     pinecone.create_index(
-#         name='qa-index',
-#         dimension=model.get_sentence_embedding_dimension()
-#     )
+if 'qa-index' not in pinecone.list_indexes():
+    pinecone.create_index(
+        name='qa-index',
+        dimension=model.get_sentence_embedding_dimension()
+    )
 
 # # connect to the index
-# index = pinecone.Index('qa-index')
+index = pinecone.Index('qa-index')
 
 st.write("""
 # AI Q&A
