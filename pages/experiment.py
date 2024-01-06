@@ -75,7 +75,7 @@ if query != "":
         # st.write(context['metadata']['text'])
         st.markdown(card(
             context['id'],
-            context['metadata']['title'],
+            "Paragraph text",
             context['metadata']['text']
 
         ), unsafe_allow_html=True)
