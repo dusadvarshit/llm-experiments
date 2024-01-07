@@ -8,6 +8,7 @@ from pages.submodules.create_index import *
 
 import pinecone
 from sentence_transformers import SentenceTransformer
+from dotenv import dotenv_values
 
 
 ##
@@ -45,8 +46,8 @@ def card(id_val, title, context):
     return f"""
     <div class="card" style="margin:1rem;">
   <div class="card-body">
-    <h5 class="card-title">{title}</h5>
-    <h6 class="card-subtitle mb-2 text-muted">{id_val}</h6>
+    <h5 class="card-title"{id_val}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">{title}</h6>
     <p class="card-text">{context}</p>
   </div>
 </div>
@@ -75,7 +76,7 @@ if query != "":
         # st.write(context['metadata']['text'])
         st.markdown(card(
             context['id'],
-            "Paragraph text",
-            context['metadata']['text']
+            context['metadata']['text'][:25]+'......',
+            context['metadata']['text'][25:]
 
         ), unsafe_allow_html=True)
