@@ -80,3 +80,5 @@ if query != "":
             context['metadata']['text'][25:]
 
         ), unsafe_allow_html=True)
+
+st.divider()
